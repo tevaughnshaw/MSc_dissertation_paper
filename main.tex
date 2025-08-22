@@ -1,0 +1,116 @@
+\documentclass[12pt, twoside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{setspace}
+\graphicspath{{images/}}
+\usepackage[a4paper, margin=1in, bindingoffset=2cm]{geometry}
+\usepackage[style=apa,sorting=nyt]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+\addbibresource{ref.bib}
+\usepackage{pdfpages}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+% \fancyfoot[CO, CE]{Section \thechapter}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+% \renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{} % Clear all header and footer fields
+    \fancyfoot[C]{\thepage} % Center page numbers
+    \renewcommand{\headrulewidth}{0pt} % Remove header line
+    \renewcommand{\footrulewidth}{0pt} % Remove footer line
+}
+
+\title{
+    {3D Fingerprint Reconstruction: Biometric Markers for Enhanced Fingerprint Analysis}\\
+}
+\date{22 August 2025}
+
+\begin{document}
+%\includepdf[pages=-]{coversheet.pdf}
+\singlespacing
+% Cover pages
+% From the start we use Roman numerals (i, ii, etc) until we get to the first chapter.
+\pagenumbering{roman}
+% \pagestyle{empty}
+% ---------
+\include{chapters/titlepage}
+\include{chapters/quotepage}
+
+\chapter*{Acknowledgements}
+I would like to express my gratitude to my family and friends for their unwavering support throughout my academic journey. Their encouragement and understanding have been invaluable.
+\chapter*{Abstract}
+Reliable and accurate fingerprint recognition is important for biometric systems used in security, authentication, and personal identification. However, current technologies often rely on surface-level imaging, which can be limited by skin conditions, environmental factors, or partial contact. This study explores a new, in-vivo approach for enhancing the accuracy and robustness of fingerprint analysis by using Optical Coherence Tomography (OCT) scans of fingertip skin and reconstructed 3D meshes of the stratum corneum with associated sweat duct entry and exit points. OCT allows for high-resolution, non-invasive imaging of subsurface skin layers providing large amounts of volumetric data that can be used to capture internal features, such as sweat ducts and ridge structures. With a goal to identify consistent and trackable internal features that could serve as reliable biometric markers, we developed a pipeline for interactive region-of-interest selection using a bounding box, mesh cropping, and anatomical segmentation of internal ridge features with an interactive plane widget to ensure a clean dataset. DBSCAN was then applied to group sweat duct points, and a single centroid was calculated for each cluster to reduce the dataset while preserving key spatial information. The core of our analysis involved applying geometric metrics to these reduced centroids. We characterized the ridge geometry by examining spatial distribution, surface curvature, and normal vector orientation. Our key findings were a mean nearest-neighbor distance of $0.1259$ mm (SD = $0.0444$ mm) for the sweat duct points. We found the average mean curvature to be $5.6783$ (SD = $51.9530$), which was statistically significant ($p = 1.3726 \times 10^{-3}$). Additionally, the average normal vector dot product was $0.7891$ (SD = $0.1995$), significantly deviating from a perfectly flat surface ($p = 4.2014 \times 10^{-127}$). These results provide a quantitative description of the spatial, curvature, and orientation characteristics of internal fingerprint features to offer a strong foundation for future advancements in more reliable biometric systems.
+\tableofcontents
+\listoftables
+\listoffigures
+\chapter*{List of Abbreviations}
+\begin{itemize}
+    \item 2D - Two-Dimensional
+    \item 3D - Three-Dimensional
+    \item OCT - Optical Coherence Tomography
+    \item SC - Stratum Corneum
+    \item SD - Sweat Ducts
+    \item VE - Viable Epidermis
+    \item FAR - False Accept Rate
+    \item FRR - False Reject Rate
+    \item AFIS - Automated Fingerprint Identification Systems
+    \item EER - Equal Error Rate
+    \item CNN - Convolutional Neural Network
+    \item PAD - Presentation Attack Detection
+    \item TIR - Total Internal Reflection
+    \item ROI - Region of Interest
+    \item DBSCAN - Density-Based Spatial Clustering of Application with Noise
+\end{itemize}
+\clearpage
+\setcounter{page}{1} 
+\pagenumbering{arabic}
+% \pagestyle{plain}
+\doublespacing
+
+\include{chapters/introduction}
+\include{chapters/methodology}
+\include{chapters/results}
+\include{chapters/discussion}
+
+\printbibliography
+\clearpage
+\appendix
+\chapter{Supplementary Figures}
+
+\begin{figure}[htp]
+    \centering
+    \begin{minipage}{0.39\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cropped_ROI.png}
+        \caption{Cropped ROI for sweat duct subset.}
+        \label{fig:additional_figure_1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.41\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/croppedSD-pairwise-heatmap.png}
+        \caption{Pairwise heatmap for sweat duct subset.}
+        \label{fig:additional_figure_2}
+    \end{minipage}
+    
+    \vspace{0.5cm}
+    
+    \begin{minipage}{0.41\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/croppedSD_3D_mean_curvature.png}
+        \caption{3D mean curvature for sweat duct subset.}
+        \label{fig:additional_figure_3}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.41\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cropped_normal_dot_product.png}
+        \caption{Normal vector dot product for sweat duct subset.}
+        \label{fig:additional_figure_4}
+    \end{minipage}
+\end{figure}
+
+\end{document}
