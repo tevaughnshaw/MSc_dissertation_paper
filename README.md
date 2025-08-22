@@ -13,3 +13,5 @@ The core of our analysis involved applying geometric metrics to these reduced ce
 - **Average normal vector dot product**: **0.7891** (SD = 0.1995), significantly deviating from a perfectly flat surface (*p* = 4.2014 × 10⁻¹²⁷)  
 
 These results provide a quantitative description of the spatial, curvature, and orientation characteristics of internal fingerprint features, offering a strong foundation for future advancements in more reliable biometric systems.
+
+Full code can be found [here](https://github.com/tevaughnshaw/3D_Fingerprint_Reconstruction).
